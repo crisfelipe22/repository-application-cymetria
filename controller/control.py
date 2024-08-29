@@ -1,20 +1,45 @@
-from flask import render_template, request
 from database.db import *
-from controller.s3_administrator import conecction_s3, save_file, update_file
+from flask import render_template, request
+from controller.s3_administrator import connection_s3, save_file, upload_file
 
-def function_ruta_prueba():
-    return "Hola soy el user infraestructura"
+def function_home_page():
+    return render_template("home.html")
 
 def function_register_page():
     return render_template("register.html")
 
+def function_consult_page():
+    return render_template("consult.html")
+
 def function_register_user():
     data_user = request.form
     data_file = request.files
-    id, name, lastname, birthday = request.form["id"], request.form["name"], request.form["lastname"], request.form["birthday"]
+    ident, name, lastname, birthday = data_user["id"], data_user["name"], data_user["lastname"], data_user["birthday"]
     photo = data_file["photo"]
-    # insert_register_database(id, name, lastname, birthday)
-    session_s3 = conecction_s3()
-    photo_path = save_file(id, photo)
-    update_file(session_s3, photo, photo_path, id)
-    return "Register user"
+    insert_register_database(ident, name, lastname, birthday)
+    session_s3 = connection_s3()
+    photo_path = save_file(ident, photo)  
+    upload_file(session_s3, photo, photo_path, ident)
+    return "<h1> User was added </h1>"  
+
+def function_consult_user():
+    req_data = request.get_json()
+    ident = req_data["id"]
+    result_data = consult_user(ident)
+    if result_data != False:
+        if len(result_data) != 0:
+            response_data = {
+                "status":"ok",
+                "name": result_data[0][1],
+                "lastname": result_data[0][2],
+                "birtday": result_data[0][3]
+            }
+        else:
+            response_data = {
+                "status":"error"
+            }
+    else:
+        response_data = {
+            "status":"error"
+        }
+    return response_data
