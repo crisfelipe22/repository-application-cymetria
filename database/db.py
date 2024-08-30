@@ -1,17 +1,13 @@
 import pymysql
-
-db_host = "$INSTANCIA_AWS"
-db_user = "$USER"
-db_password = "$PASSWORD"
-db_database = "$NAME_DATABASE"
+from keys import *
 
 def conection_database():
     try:
         conection_sql = pymysql.connect(
-            host=db_host,
-            user=db_user,
-            password=db_password,
-            database=db_database,
+            host=DB_HOST,
+            user=DB_USER,
+            password=DB_PASSWORD,
+            database=DB_DATABASE,
         )
         print("Successfull satisfactory to database")
         return conection_sql

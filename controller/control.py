@@ -1,6 +1,6 @@
 from database.db import *
 from flask import render_template, request
-from controller.s3_administrator import connection_s3, save_file, upload_file
+from controller.s3_administrator import conection_s3, save_file, update_file
 
 def function_home_page():
     return render_template("home.html")
@@ -17,9 +17,9 @@ def function_register_user():
     ident, name, lastname, birthday = data_user["id"], data_user["name"], data_user["lastname"], data_user["birthday"]
     photo = data_file["photo"]
     insert_register_database(ident, name, lastname, birthday)
-    session_s3 = connection_s3()
+    session_s3 = conection_s3()
     photo_path = save_file(ident, photo)  
-    upload_file(session_s3, photo, photo_path, ident)
+    update_file(session_s3, photo, photo_path, ident)
     return "<h1> User was added </h1>"  
 
 def function_consult_user():
