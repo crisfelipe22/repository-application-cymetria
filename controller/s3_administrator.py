@@ -15,9 +15,11 @@ def save_file(id, photo):
     # for windows
     # directory = "C:/temp/"
     # os.makedirs(directory, exist_ok=True)  # Crea el directorio si no existe
-    
-    extension = photo.filename.split(".")[1]
+    # extension = photo.filename.split(".")[1]
     # photo_path = os.path.join(directory, f"{id}.{extension}")
+    
+    #linux
+    extension = photo.filename.split(".")[1]
     photo_path = "/tmp/" + id + "." + extension # for linux
     photo.save(photo_path)
     print("Photo saved")

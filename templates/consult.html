@@ -12,8 +12,26 @@
     <div>
         <label> Id </label> <input id="ident"> <br> <br>
         <img src="" id="img-user"> <br> <br>
-        <textarea id="txt-data"></textarea> <br> <br>
+        <div>
+            <label for="txt-name"> Name </label>
+            <textarea id="txt-name"></textarea> <br> <br>
+        </div>
+        <div>
+            <label for="txt-lastname"> Lastname </label>
+            <textarea id="txt-lastname"></textarea> <br> <br>
+        </div>
+        <div>
+            <label for="txt-birthday"> Birthday </label>
+            <textarea id="txt-birthday"></textarea> <br> <br>
+        </div>
         <button onclick="consult_user()"> Consult </button>
     </div>    
+    </div>    
+    <form action="/register_page" method="get">
+        <button type="submit"> Register </button>
+    </form>
+    <form action="/" method="get">
+        <button type="submit"> Home </button>
+    </form>
 </body>
 </html>

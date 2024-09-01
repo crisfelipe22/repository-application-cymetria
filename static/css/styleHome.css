@@ -3,7 +3,7 @@ h1, div {
 }
 
 body {
-    background-color: antiquewhite;
+    background-color: rgb(215, 248, 250);
 }
 
 img {
@@ -15,8 +15,8 @@ h1 {
 }
 
 button {
-    background-color: black;
-    color: white;
+    background-color: rgb(209, 165, 165);
+    color: black;
     border-radius: 10px;
     padding: 8px;
     font-size: 20px;

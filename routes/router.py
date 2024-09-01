@@ -9,11 +9,15 @@ def ruta_prueba():
 def register_page():
     return function_register_page()
 
+@app.route("/consult_page")
+def consult_page():
+    return function_consult_page()
+
 @app.route("/register_user", methods=["POST"])
 def register_user():
     return function_register_user()
 
-@app.route("/consult_user", methods=["post"])
+@app.route("/consult_user", methods=["POST"])
 def consult_user():
     print("Estoy consultando usuarios")
     return function_consult_user()

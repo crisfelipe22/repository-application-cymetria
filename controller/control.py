@@ -26,6 +26,7 @@ def function_consult_user():
     req_data = request.get_json()
     ident = req_data["id"]
     result_data = consult_user(ident)
+    print(result_data)
     if result_data != False:
         if len(result_data) != 0:
             response_data = {
@@ -42,4 +43,5 @@ def function_consult_user():
         response_data = {
             "status":"error"
         }
+    print("response data ", response_data)
     return response_data
